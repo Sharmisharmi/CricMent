@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:enabled="true"
+        android:icon="@drawable/home"
+        android:title="Home"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white"
+        />
+
+
+    <item
+        android:id="@+id/series"
+        android:enabled="true"
+        android:icon="@drawable/cricket_trophy"
+        android:title="Series"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+    <item
+        android:id="@+id/matches"
+        android:enabled="true"
+        android:icon="@drawable/matches"
+        android:title="Matches"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+    <item
+        android:id="@+id/HighLights"
+        android:enabled="true"
+        android:icon="@drawable/highlight"
+        android:title="HighLights"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+
+</menu>

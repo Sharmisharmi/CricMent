@@ -1,0 +1,89 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/following"
+        android:enabled="true"
+        android:icon="@drawable/followers"
+        android:title="Following"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+    <item
+        android:id="@+id/notification"
+        android:enabled="true"
+        android:icon="@drawable/notification"
+        android:title="Notification"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+    <item
+        android:id="@+id/connect"
+        android:enabled="true"
+        android:icon="@drawable/link"
+        android:title="Connect with us"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+    <item
+        android:id="@+id/rateUs"
+        android:enabled="true"
+        android:icon="@drawable/star"
+        android:title="Rate Us"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+    <item
+        android:id="@+id/invite"
+        android:enabled="true"
+        android:icon="@drawable/share"
+        android:title="Invite Friends"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+    <item
+        android:id="@+id/aboutus"
+        android:enabled="true"
+        android:icon="@drawable/information"
+        android:title="About Us"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+    <item
+        android:id="@+id/terms"
+        android:enabled="true"
+        android:icon="@drawable/terms"
+        android:title="Terms and Conditions"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+    <item
+        android:id="@+id/privacy"
+        android:enabled="true"
+        android:icon="@drawable/privacy"
+        android:title="Privacy Policy"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+    <item
+        android:id="@+id/logout"
+        android:enabled="true"
+        android:icon="@drawable/logout"
+        android:title="Logout"
+        app:cnb_iconColor="@color/white"
+        app:cnb_iconTintMode="src_in"
+        app:cnb_textColor="@color/white" />
+
+
+
+</menu>

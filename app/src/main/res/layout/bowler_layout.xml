@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="5"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="5dp">
+        <TextView
+            android:id="@+id/bowlerName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:textColor="@color/pencil_black"
+            android:text="I Kishan"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12dp"/>
+
+        <TextView
+            android:id="@+id/runsOver"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/pencil_black"
+            android:text="4-55"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="10dp"/>
+
+        <TextView
+            android:id="@+id/over"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/pencil_black"
+            android:text="1"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="10dp"
+            android:gravity="center"/>
+
+
+        <TextView
+            android:id="@+id/economy"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/pencil_black"
+            android:text="58.8"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="10dp"
+            android:gravity="end"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

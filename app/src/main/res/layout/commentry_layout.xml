@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp">
+        <TextView
+            android:id="@+id/overCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/pencil_black"
+            android:text="Over : 3"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/totalRuns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/pencil_black"
+            android:text="Over 12"
+            android:background="@drawable/box_corner"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14dp"
+            android:paddingHorizontal="10dp"
+            android:backgroundTint="@color/colorthree"
+            android:layout_alignParentEnd="true"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/commentryTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/pencil_black"
+        android:text="Over 12"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="14dp"
+        android:layout_marginTop="15dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorthree"
+        android:layout_marginVertical="14dp"/>
+
+
+</LinearLayout>

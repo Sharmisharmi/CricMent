@@ -1,0 +1,587 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+   >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_bg"
+        android:layout_marginVertical="18dp"
+        android:layout_marginHorizontal="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="India tour of Australia"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@drawable/border_bg"
+            android:layout_marginTop="5dp"
+            android:paddingVertical="25dp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.27"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/round_corner_stroke"
+                        android:padding="4dp">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/india_flag"
+                        android:layout_gravity="center"
+                       android:id="@+id/team1Img"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        android:layout_marginLeft="5dp">
+
+
+                        <TextView
+                            android:id="@+id/team1Txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="India"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/pencil_black"
+                            android:textSize="15dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-3dp"
+                            >
+
+                            <TextView
+                                android:id="@+id/team1Score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="365-5 "
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="13dp"
+                                android:textColor="#02635A"
+                                />
+                            <TextView
+                                android:id="@+id/team1Over"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="(44.5) "
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10dp"
+                                android:textColor="@color/red" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pencil_black"
+                android:text="vs"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="@color/colorthree"
+                android:paddingHorizontal="5dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="right"
+                        android:layout_weight="0.6"
+                        android:layout_marginRight="5dp">
+
+
+                        <TextView
+                            android:id="@+id/team2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pakistan"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/pencil_black"
+                            android:textSize="15dp"/>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-3dp"
+                            >
+
+                            <TextView
+                                android:id="@+id/team2Score"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="95-2 "
+                                android:fontFamily="@font/poppins_semibold"
+                                android:textSize="13dp"
+                                android:textColor="#02635A"
+                                />
+                            <TextView
+                                android:id="@+id/team2Over"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="(12.5) "
+                                android:fontFamily="@font/poppins_medium"
+                                android:textSize="10dp"
+                                android:textColor="@color/red" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.27"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/round_corner_stroke"
+                        android:padding="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/team2Img"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/india_flag"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="4dp"
+                android:layout_height="25dp"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="5dp"/>
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21 September, 2023 "
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@color/pencil_black"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/card"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+
+
+
+
+                <TextView
+                    android:id="@+id/location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Galle International Stadium, Srilanka"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="4dp"/>
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:src="@drawable/location"
+                    android:layout_toEndOf="@+id/location"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginVertical="14dp"
+        android:background="#B6B5B5" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="10dp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Match Type"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="11dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="ODI"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="12dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:weightSum="2">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Match"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="11dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="1st ODI"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Nationality"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="11dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="India toss &amp; won"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:weightSum="2">
+
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Series"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="11dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="India tour of Australia, 2023"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Status"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="11dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Indai won"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginVertical="20dp">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="2dp"
+        android:layout_marginTop="25dp"
+        android:foreground="?android:attr/selectableItemBackground">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:id="@+id/playing1RL"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="15dp"
+            android:paddingVertical="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#545555"
+                android:text="Playing XI"
+                android:fontFamily="@font/poppins_semibold"
+                android:textSize="12dp"
+              />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/arrow_right_24"
+                android:layout_alignParentEnd="true"/>
+        </RelativeLayout>
+
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Umpires"
+            android:fontFamily="@font/poppins_semibold"
+            android:textSize="14dp"
+            android:gravity="center_vertical"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Umpires"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="11dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pencil_black"
+                android:text="Richard Illingworth, Masudur Rahman Mukul"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Third Umpire"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="11dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pencil_black"
+                android:text="Richard Illingworth, Masudur Rahman Mukul"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="30dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Refree"
+                android:fontFamily="@font/poppins_regular"
+                android:textSize="11dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pencil_black"
+                android:text="Richard Illingworth, Masudur Rahman Mukul"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"/>
+
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+</LinearLayout>

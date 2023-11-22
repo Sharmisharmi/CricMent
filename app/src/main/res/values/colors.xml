@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="pencil_black">#636363</color>
+    <color name="light_black">#B6B5B5</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="white_transparent1">#88DAD5D5</color>
+    <color name="white_transparent">#2B8AC8</color>
+
+    <color name="primary1">#4CAF50</color>
+    <color name="victory">#5DCF61</color>
+    <color name="primary2">#000C66</color>
+    <color name="primary">#1877F2</color>
+    <color name="red">#F61717</color>
+    <color name="transparent_blue">#368192CD</color>
+    <color name="yellow">#FFEB3B</color>
+    <color name="unselected_card">#7C627ACF</color>
+    <color name="selected_card">#7CA5B4E8</color>
+    <color name="default_bg">#0A33C1</color>
+    <color name="white_smoke">#F5F5F5</color>
+
+    <color name="colorthree">#DAE5F9</color>
+    <color name="dark_blue">#83bce4</color>
+    <color name="light_blue">#83bce4</color>
+    <color name="standard_blue" >#83bce4</color>
+    <color name="blue">#83bce4</color>
+    <color name="new_blue">#3f51b5</color>
+    <color name="sky_blue" >#83bce4</color>
+    <color name="wave_start_color" >#83bce4</color>
+    <color name="sea_blue" >#83bce4</color>
+    <color name="dark_green"> #83bce4</color>
+    <color name="transparent">#00000000</color>
+</resources>
