@@ -40,6 +40,7 @@
             android:layout_marginTop="15dp">
 
             <TextView
+                android:id="@+id/seriesNameTXt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -48,6 +49,7 @@
                 android:textSize="13dp"/>
 
             <TextView
+                android:id="@+id/durationTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -175,7 +177,10 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/squads_recyclerView"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:visibility="visible"/>
+
+
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -184,11 +189,13 @@
                     android:fontFamily="@font/poppins_semibold"
                     android:textColor="@color/black"
                     android:textSize="16dp"
-                    android:layout_marginTop="15dp"/>
+                    android:layout_marginTop="15dp"
+                    android:visibility="gone"/>
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/squads_recyclerViewB"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 

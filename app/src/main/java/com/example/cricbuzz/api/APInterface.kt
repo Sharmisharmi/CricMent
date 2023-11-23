@@ -3,6 +3,8 @@ package com.example.cricbuzz.api
 import com.example.cricbuzz.login.LoginData
 import com.example.cricbuzz.login.LoginResponse
 import com.example.cricbuzz.match.model.MatchesResponse
+import com.example.cricbuzz.players.model.PlayerResponse
+import com.example.cricbuzz.series.model.SeriesInfoRespnse
 import com.example.cricbuzz.series.model.SeriesResponse
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -52,6 +54,14 @@ interface APInterface {
 
     @GET("v1/series")
     fun getSeriesList(@Query("apikey") apiKey:String, @Query("offset") offset: Int): Call<SeriesResponse?>?
+
+    @GET("v1/series_info")
+    fun getSeriesInfo(@Query("apikey") apiKey:String, @Query("id") id: String): Call<SeriesInfoRespnse?>?
+
+
+
+    @GET("v1/series_squad")
+    fun getPlayerInfo(@Query("apikey") apiKey:String, @Query("id") id: String): Call<PlayerResponse?>?
 
 
 

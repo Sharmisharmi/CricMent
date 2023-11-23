@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cricbuzz.R
 import com.example.cricbuzz.series.model.SeriesData
@@ -29,13 +30,14 @@ class SeriesListAdapter(context: Context, data: List<SeriesData>?, listener: ite
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-//        holder.title.text=data[position].cat_name.toString()
+        holder.seriesNameTXT.text=data[position].name.toString()
+        holder.seriesNameTXT.isSelected = true
 //
 //
 //        Picasso.get().load(data[position].image_url).into(holder.image)
 //
         holder.seriesLL.setOnClickListener {
-            listener.seriesOnclick(position)
+            listener.seriesOnclick(position,data[position])
         }
 
     }
@@ -47,14 +49,14 @@ class SeriesListAdapter(context: Context, data: List<SeriesData>?, listener: ite
 
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 //
-//        var title : TextView = itemView.findViewById(R.id.title)
+        var seriesNameTXT : TextView = itemView.findViewById(R.id.seriesNameTXT)
 //        var image : ImageView = itemView.findViewById(R.id.images)
         var seriesLL : LinearLayout = itemView.findViewById(R.id.seriesLL)
 
     }
 
     interface itemListener{
-        fun seriesOnclick(pos:Int)
+        fun seriesOnclick(pos:Int, data: SeriesData)
 
     }
 
