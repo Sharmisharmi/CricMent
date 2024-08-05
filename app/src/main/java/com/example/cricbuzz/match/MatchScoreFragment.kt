@@ -1,280 +1,263 @@
 package com.example.cricbuzz.match
 
-import android.content.Context
+import android.content.SharedPreferences
+import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.example.cricbuzz.CommonConstants.CommonConstants
 import com.example.cricbuzz.R
+import com.example.cricbuzz.databinding.FragmentMatchScoreBinding
+import com.example.cricbuzz.match.adapter.PlayingXIAdapter
+import com.example.cricbuzz.match.model.MatchInfoData
+import com.example.cricbuzz.match.model.MatchInfoReponse
 import com.example.cricbuzz.match.viewmodel.MatchesViewModel
+import com.example.cricbuzz.players.model.PlayerResponse
+import com.example.cricbuzz.series.view_model.SeriesViewModel
 import com.squareup.picasso.Picasso
-import de.hdodenhof.circleimageview.CircleImageView
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.Locale
 
 
 class MatchScoreFragment : Fragment() {
 
 
-    lateinit var batter_ll: LinearLayout
-    lateinit var bowler_ll:LinearLayout
-    lateinit var team1Txt:TextView
-    lateinit var team2Txt:TextView
-    lateinit var team1score:TextView
-    lateinit var team2score:TextView
-    lateinit var team1over:TextView
-    lateinit var team2over:TextView
-    lateinit var team1Img:CircleImageView
-    lateinit var team2Img:CircleImageView
+   lateinit var binding:FragmentMatchScoreBinding
 
 
     var matchesViewModel:MatchesViewModel? = null
-
-    var token = "ec471071441bb2ac538a0ff901abd249"
-
-    var nameArray:ArrayList<String> = ArrayList()
-    var bowlernameArray:ArrayList<String> = ArrayList()
-    var playerIdArray:ArrayList<Int> = ArrayList()
-    var playerRunArray:ArrayList<Int> = ArrayList()
+    var seriesViewModel:SeriesViewModel = SeriesViewModel()
 
 
+
+    var pref: SharedPreferences? = null
+    var match_id = ""
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        var view = inflater.inflate(R.layout.fragment_match_score, container, false)
+        binding = FragmentMatchScoreBinding.inflate(inflater,container,false)
         matchesViewModel = MatchesViewModel()
 
-        batter_ll = view.findViewById(R.id.batter_ll)
-        bowler_ll = view.findViewById(R.id.bowler_ll)
-        team1Txt = view.findViewById(R.id.team1Txt)
-        team2Txt = view.findViewById(R.id.team2Txt)
-        team1score = view.findViewById(R.id.team1score)
-        team2score = view.findViewById(R.id.team2score)
-        team1over = view.findViewById(R.id.team1over)
-        team2over = view.findViewById(R.id.team2over)
-        team1Img = view.findViewById(R.id.team1Img)
-        team2Img = view.findViewById(R.id.team2Img)
 
 
-//        getFinishedMatch()
+        Glide.with(this).load(R.drawable.no_data_found).into(binding.noDataImg);
+        pref =activity!!.getSharedPreferences(CommonConstants.CRICKETBUZZ, AppCompatActivity.MODE_PRIVATE)
 
-        return view
+        match_id = pref?.getString(CommonConstants.ID,"").toString()
+
+        getMatchInfoAPI(match_id)
+        return binding.root
     }
-//    private fun getFinishedMatch() {
-//        matchesViewModel!!.getFinishedMatchesData(token)
-//            .observe(this) { res: CompletedMatchesResponse ->
-//
-//                if (res.status.toString().equals("ok",ignoreCase = true)) {
-//                    var data = res.response
-//                    team1Txt.text = data!!.teams!![0].abbr.toString()
-//                    team2Txt.text = data.teams!![1].abbr.toString()
-//                    team1score.text = data.teams!![0].scores.toString()
-//                    team1over.text = data.teams!![0].overs.toString()
-//                    team2score.text = data.teams!![1].scores.toString()
-//                    team2over.text = data.teams!![1].overs.toString()
-//
-//
-//
-//
-//
-//                    if (!data.teams!![0].logoUrl.toString().isNullOrEmpty()) {
-//                        Picasso.get().load(data.teams!![0].logoUrl.toString()).into(team1Img)
-//                    }
-//
-//
-//                    if (!data.teams!![1].logoUrl.toString().isNullOrEmpty()) {
-//                        Picasso.get().load(data.teams!![1].logoUrl.toString()).into(team2Img)
-//                    }
-//
-//
-//                    Log.d("commentry_size", "getFinishedMatch: "+ data.commentaries!!.size)
-//                    if (data.commentaries!!.size>0) {
-//                        for (com in 0 until data.commentaries!!.size) {
-//                            if (data.commentaries!![com].bats != null ) {
-//                                for (i in 0 until data.commentaries!![com].bats!!.size) {
-//                                    getBatterScore(i, data.commentaries!![com].bats, data.commentaries!![com].bowls,data.players)
-//                                }
-//                            }
-//                        }
-//                    }
-//
-//                    batterView()
-//
-//                    bowlerView()
-//
-//                }else{
-//
-//                }
-//
-//
-//            }
-//    }
 
-    private fun bowlerView() {
-        if (bowlernameArray.size>0) {
-            for (j in 0 until bowlernameArray.size) {
 
-                var inflater: LayoutInflater =
-                    activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                var customView1: View = inflater.inflate(
-                    R.layout.bowler_layout, null
-                )
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun getMatchInfoAPI(matchId: String) {
 
-                var bowlerName:TextView = customView1.findViewById(R.id.bowlerName)
+        matchesViewModel!!.getMatchInfoData(CommonConstants.apiKey,matchId)
+            .observe(this) { res: MatchInfoReponse ->
 
-                bowlerName.text = bowlernameArray[j]
-//
-//            runs.text = "1"
+                var data =res.data
 
-                bowler_ll.addView(customView1)
 
+                if (data!!.matchStarted==true && data.matchEnded == false){
+                    binding.liveCard.visibility = View.VISIBLE
+                    binding.finishedMatchLayout.visibility = View.GONE
+                    binding.upcomingMatchesLayout.visibility = View.GONE
+                    liveMatchDataSet(data)
+                }else if (data!!.matchStarted==true && data.matchEnded == true){
+                    binding.liveCard.visibility = View.GONE
+                    binding.upcomingMatchesLayout.visibility = View.GONE
+                    binding.finishedMatchLayout.visibility = View.VISIBLE
+                }else{
+                    binding.liveCard.visibility = View.GONE
+                    binding.upcomingMatchesLayout.visibility = View.VISIBLE
+                    binding.finishedMatchLayout.visibility = View.GONE
+//                    upComingMatchDataSet(data)
+                }
+                binding!!.matchNameTXTUC.text = data!!.name.toString()
+//                binding!!.match.text = data!!.matchType.toString()
+//                binding!!.tossTXT.text = data!!.tossWinner.toString()
+//                binding!!.tossChoiceTXT.text = data!!.tossChoice.toString()
+//                binding.tossTxt.text= data.status.toString()
+
+
+                val ldt: LocalDateTime = LocalDateTime.parse(data.dateTimeGMT.toString())
+                val formatter = DateTimeFormatter.ofPattern("dd MMM, yyyy", Locale.ENGLISH)
+                val date_time: String = ldt.format(formatter)
+                println(date_time)
+
+//                binding!!.date.text = date_time
+//                binding!!.location.text = data.venue
+
+
+                binding!!.team1Txt.text = data.teams!![0]
+                binding!!.team2Txt.text = data.teams!![1]
+
+                if(data.teamInfo != null){
+
+                    binding!!.team1Txt.text = data.teamInfo!![0].shortname.toString()
+                    if (data.teamInfo!!.size > 1) {
+                        binding!!.team2Txt.text = data.teamInfo!![1].shortname ?: data.teamInfo!![1].name.toString()
+                        if (data.teamInfo!![1].img != null)
+                            Picasso.get().load(data.teamInfo!![1].img.toString()).into(binding!!.team2Img)
+                    }
+
+                    if (data.matchStarted == false && data.matchEnded == false){
+//                        binding!!.team1Over.visibility = View.GONE
+//                        binding!!.team1Score.visibility = View.GONE
+//                        binding!!.team2Over.visibility = View.GONE
+//                        binding!!.team2Score.visibility = View.GONE
+                    }
+
+                    if (data.teamInfo!![0].img != null)
+                        Picasso.get().load(data.teamInfo!![0].img.toString()).into(binding!!.team1Img)
+
+
+                }else{
+//                    binding!!.team1Over.visibility = View.GONE
+//                    binding!!.team1Score.visibility = View.GONE
+//                    binding!!.team2Over.visibility = View.GONE
+//                    binding!!.team2Score.visibility = View.GONE
+                }
+
+                getPlayerListAPI(match_id)
+
+            }
+
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun liveMatchDataSet(data: MatchInfoData) {
+        binding.seriesNameC.text=data.name.toString().split(",").toTypedArray()[0]
+        binding.team1Txt.text= data.teamInfo!![0]!!.shortname.toString()
+        if (data.teamInfo!!.size > 1) {
+            binding.team2Txt.text = data.teamInfo!![1]!!.shortname ?: data.teamInfo[1].name
+            if (!data.teamInfo!![1].img.toString().isNullOrEmpty()) {
+                Picasso.get().load(data.teamInfo!![1].img.toString()).into(binding.team2ImgC)
+            }
+        }
+
+        val ldt: LocalDateTime = LocalDateTime.parse(data.dateTimeGMT.toString())
+        val formatter = DateTimeFormatter.ofPattern("dd MMM, EEEE- hh:mm a", Locale.ENGLISH)
+        val date_time: String = ldt.format(formatter)
+        println(date_time)
+
+
+
+        binding.time.text ="start at "+date_time.split("- ").toTypedArray()[1]
+
+        if (!data.teamInfo!![0].img.toString().isNullOrEmpty()) {
+            Picasso.get().load(data.teamInfo!![0].img.toString()).into(binding.team1ImgC)
+        }
+
+
+
+
+        if (data.score != null) {
+            if (data.score!!.size == 2) {
+                if (data.score!![0].inning.toString()
+                        .contains(data.teamInfo!![0].name.toString())
+                ) {
+                    binding.runperwicketTxt1.text =
+                        data.score!![0].r.toString() + "-" + data.score!![0].w.toString()
+                    binding.overTxt1.text = "("+data.score!![0].o.toString()+")"
+                    binding.runperwicketTxt2.text =
+                        data.score!![1].r.toString() + "-" + data.score!![1].w.toString()
+                    binding.overTxt2.text = "("+data.score!![1].o.toString()+")"
+
+
+                } else {
+                    binding.runperwicketTxt1.text =
+                        data.score!![1].r.toString() + "-" + data.score!![1].w.toString()
+                    binding.overTxt1.text = "("+data.score!![1].o.toString()+")"
+                    binding.runperwicketTxt2.text =
+                        data.score!![0].r.toString() + "-" + data.score!![0].w.toString()
+                    binding.overTxt2.text = "("+data.score!![0].o.toString()+")"
+
+                }
+            } else if (data.score!!.size == 1) {
+                if (data.score!![0].inning.toString()
+                        .contains(data.teamInfo!![0].name.toString())
+                ) {
+                    binding.runperwicketTxt1.text =
+                        data.score!![0].r.toString() + "-" + data.score!![0].w.toString()
+                    binding.overTxt1.text = "("+data.score!![0].o.toString()+")"
+                    binding.runperwicketTxt2.visibility = View.GONE
+                    binding.overTxt2.visibility = View.GONE
+                    binding.batImg1.visibility = View.VISIBLE
+                    binding.ballImg2.visibility = View.VISIBLE
+                    binding.toBatTXT2.visibility = View.VISIBLE
+                    binding.toBatTXT1.visibility = View.GONE
+                    binding.batImg2.visibility = View.GONE
+                    binding.ballImg1.visibility = View.GONE
+
+
+                } else {
+                    binding.runperwicketTxt1.visibility = View.GONE
+                    binding.overTxt1.visibility = View.GONE
+                    binding.runperwicketTxt2.text = data.score!![0].r.toString() + "-" + data.score!![0].w.toString()
+                    binding.overTxt2.text = "("+data.score!![0].o.toString()+")"
+                    binding.batImg1.visibility = View.GONE
+                    binding.ballImg2.visibility = View.GONE
+                    binding.batImg2.visibility = View.VISIBLE
+                    binding.ballImg1.visibility = View.VISIBLE
+                    binding.toBatTXT2.visibility = View.GONE
+                    binding.toBatTXT1.visibility = View.VISIBLE
+
+                }
+            } else if (data.score!!.size == 0) {
+
+                binding.runperwicketTxt1.visibility = View.GONE
+                binding.overTxt1.visibility = View.GONE
+                binding.runperwicketTxt2.visibility = View.GONE
+                binding.overTxt2.visibility = View.GONE
+                binding.runperwicketTxt1.visibility = View.GONE
+                binding.overTxt1.visibility = View.GONE
+                binding.runperwicketTxt2.visibility = View.GONE
+                binding.overTxt2.visibility = View.GONE
+                binding.liveLL.visibility = View.GONE
+                binding.time.visibility = View.VISIBLE
+                binding.timeLL.visibility = View.VISIBLE
 
             }
         }
     }
 
-    private fun batterView() {
+    private fun getPlayerListAPI(id: String?) {
 
-        if (nameArray.size>0) {
-            for (i in 0 until nameArray.size) {
-                var inflater: LayoutInflater =
-                    activity!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-                var customView: View = inflater.inflate(
-                    R.layout.batter_runs_layout1, null
-                )
+        seriesViewModel!!.getPlayersList(CommonConstants.apiKey, id.toString())
+            .observe(this) { res: PlayerResponse ->
 
-                var nameTxt: TextView = customView.findViewById(R.id.nameTxt)
-                nameTxt.text = nameArray[i]
+                var data = res.data
+                if (data!!.size>0) {
 
-                batter_ll.addView(customView)
+                    binding.team1PlayerRecyclerView.setHasFixedSize(true)
+                    binding.team1PlayerRecyclerView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+
+                    binding.team1PlayerRecyclerView.adapter = PlayingXIAdapter(requireContext(), data[0].players)
+
+                    binding.team2PlayerRecyclerView.setHasFixedSize(true)
+                    binding.team2PlayerRecyclerView.layoutManager = LinearLayoutManager(activity,LinearLayoutManager.VERTICAL,false)
+
+                    binding.team2PlayerRecyclerView.adapter = PlayingXIAdapter(requireContext(), data[1].players)
+
+                }else{
+                    binding.NALayout.visibility = View.VISIBLE
+                    binding.team1PlayerRecyclerView.visibility = View.GONE
+                    binding.team2PlayerRecyclerView.visibility = View.GONE
+
+                }
+                }
             }
-        }
-
 
     }
-
-//    private fun getBatterScore(
-//        i: Int,
-//        batsmen: List<Bat>?,
-//        bbb: List<Bowl>?,
-//        players: List<Player>?
-//    ) {
-////        for (i in 0 until 11) {
-//
-//
-//        Log.d("bbb", "getBatterScore: "+ bbb!![i].bowlerId.toString())
-//
-//
-//        if (players != null) {
-//
-//
-//            for (p in 0 until players.size){
-//                if (players[p].pid.toString().equals(batsmen!![i].batsmanId.toString())){
-//                    nameArray.add(players[p].shortName.toString())
-//                    playerIdArray.add(players[p].pid!!.toInt())
-//
-//
-////                    val hm = HashMap<Int, ArrayList<Int>>()
-////
-////                    // Change Value using put method
-////
-////                    // Change Value using put method
-////                    hm[players[p].pid!!.toInt()] = playerRunArray
-////
-////
-////                    println("Initial Map $hm")
-////                    Log.d("hashmap", "getBatterScore: "+hm)
-////                    Log.d("runs", "getBatterScore: "+playerRun)
-//
-//
-//
-//                }else{
-//                    bowlernameArray.add(players[p].shortName.toString())
-//                }
-//
-//            }
-//        }
-//
-//
-//        if (players != null) {
-//
-//
-//            for (p in 0 until players.size){
-//                if(players[p].pid!!.toInt() == (bbb!![i].bowlerId!!.toInt())){
-//
-//                    bowlernameArray.add(players[p].shortName.toString())
-//
-//
-//                }
-//
-//            }
-//        }
-//
-//
-//        val hashSet = HashSet<String>()
-//        hashSet.addAll(nameArray)
-//        nameArray.clear()
-//        nameArray.addAll(hashSet)
-//
-//        val bowlerhashSet = HashSet<String>()
-//        hashSet.addAll(bowlernameArray)
-//        bowlernameArray.clear()
-//        bowlernameArray.addAll(bowlerhashSet)
-//
-//        val playerIdHash = HashSet<Int>()
-//        playerIdHash.addAll(playerIdArray)
-//        playerIdArray.clear()
-//        playerIdArray.addAll(playerIdHash)
-//
-////        for (runs in 0 until playerIdArray.size){
-////            playerRunArray.add(0)
-////        }
-////
-////        var playerRun =0
-//////        if (playerIdArray.contains(batsmen!![i].batsmanId!!.toInt())){
-//////            playerRun += batsmen[i].runs!!.toInt()
-//////
-//////        }
-////
-//////        var plar:ArrayList<Int>[playerIdArray.size] = ArrayList()
-//////        for (r in 0 until  playerIdArray.size){
-//////            playerRunArray.set(r,playerRun)
-//////        }
-////        for (runs in 0 until playerIdArray.size){
-////
-////            if (playerIdArray[runs]  == batsmen!![i].batsmanId!!.toInt()){
-////                playerRun += batsmen[i].runs!!.toInt()
-////                playerRunArray.set(runs,playerRun)
-////            }else{
-////
-////                break
-////            }
-////
-////        }
-//
-//        Log.d("playerRun1", "getBatterScore: "+playerRunArray)
-//
-//        Log.d("playerArray", "getBatterScore: "+bowlernameArray)
-//
-//
-//
-//
-////
-////            runs.text = "1"
-//
-//
-//
-//
-////        }
-//    }
-
-
-
-
-
-
-}

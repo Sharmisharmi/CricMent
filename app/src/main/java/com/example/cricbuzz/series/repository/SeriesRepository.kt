@@ -4,7 +4,10 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.cricbuzz.api.APInterface
 import com.example.cricbuzz.api.ApiClient
+import com.example.cricbuzz.players.model.PlayerInfoResponse
 import com.example.cricbuzz.players.model.PlayerResponse
+import com.example.cricbuzz.series.model.PointsTableData
+import com.example.cricbuzz.series.model.PointsTableResponse
 import com.example.cricbuzz.series.model.SeriesInfoRespnse
 import com.example.cricbuzz.series.model.SeriesResponse
 import retrofit2.Call
@@ -66,7 +69,6 @@ class SeriesRepository {
                     Log.d("response_raw", "onResponse: "+response.raw())
 
 
-
                 }else{
 
                     Log.d("response_raw", "onError: "+response.raw())
@@ -110,6 +112,77 @@ class SeriesRepository {
                 }
             }
             public override fun onFailure(call: Call<PlayerResponse?>, t: Throwable?) {
+
+                Log.d("response_raw", "onFailure: "+t.toString())
+
+
+
+            }
+        })
+
+        return mutableLiveData
+    }
+
+
+    fun requestPlayerInfoData(
+        apiKey: String,playerId: String
+    ): MutableLiveData<PlayerInfoResponse> {
+        val mutableLiveData: MutableLiveData<PlayerInfoResponse> = MutableLiveData()
+
+
+        val apiService: APInterface? = ApiClient.getRetrofitClient()?.create(APInterface::class.java)
+        apiService?.getPlayerInfoData(apiKey,playerId)?.enqueue(object :
+            Callback<PlayerInfoResponse?> {
+            override fun onResponse(call: Call<PlayerInfoResponse?>?, response: Response<PlayerInfoResponse?>) {
+                if (response.isSuccessful && response.body() != null) {
+                    mutableLiveData.setValue(response.body()!! )
+
+                    Log.d("response_raw", "onResponse: "+response.raw())
+
+
+
+                }else{
+
+                    Log.d("response_raw", "onError: "+response.raw())
+
+                }
+            }
+            public override fun onFailure(call: Call<PlayerInfoResponse?>, t: Throwable?) {
+
+                Log.d("response_raw", "onFailure: "+t.toString())
+
+
+
+            }
+        })
+
+        return mutableLiveData
+    }
+
+    fun requestPointsTableData(
+        apiKey: String,seriesId: String
+    ): MutableLiveData<PointsTableResponse> {
+        val mutableLiveData: MutableLiveData<PointsTableResponse> = MutableLiveData()
+
+
+        val apiService: APInterface? = ApiClient.getRetrofitClient()?.create(APInterface::class.java)
+        apiService?.getPointsTableData(apiKey,seriesId)?.enqueue(object :
+            Callback<PointsTableResponse?> {
+            override fun onResponse(call: Call<PointsTableResponse?>?, response: Response<PointsTableResponse?>) {
+                if (response.isSuccessful && response.body() != null) {
+                    mutableLiveData.setValue(response.body()!! )
+
+                    Log.d("response_raw", "onResponse: "+response.raw())
+
+
+
+                }else{
+
+                    Log.d("response_raw", "onError: "+response.raw())
+
+                }
+            }
+            public override fun onFailure(call: Call<PointsTableResponse?>, t: Throwable?) {
 
                 Log.d("response_raw", "onFailure: "+t.toString())
 

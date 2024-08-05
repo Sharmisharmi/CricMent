@@ -30,35 +30,7 @@
             android:fontFamily="@font/poppins_medium"
             android:textSize="10dp"/>
 
-        <TextView
-            android:id="@+id/foursTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/pencil_black"
-            android:text="1"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="10dp"/>
 
-        <TextView
-            android:id="@+id/sixTxt"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/pencil_black"
-            android:text="0"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="10dp"/>
-        <TextView
-            android:id="@+id/strikeRate"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/pencil_black"
-            android:text="58.8"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="10dp"
-            android:gravity="end"/>
 
     </LinearLayout>
 

@@ -36,8 +36,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="2"
-
-        android:layout_marginTop="45dp">
+        android:layout_marginTop="45dp"
+        android:layout_marginRight="15dp">
 
         <LinearLayout
             android:layout_width="0dp"
@@ -47,6 +47,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/playerNameTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -67,6 +68,7 @@
                     android:layout_weight="1">
 
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/countryImage"
                     android:layout_width="13dp"
                     android:layout_height="13dp"
                     android:src="@drawable/india_flag"/>
@@ -74,6 +76,7 @@
 
 
                     <TextView
+                        android:id="@+id/countryTXT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/pencil_black"
@@ -106,6 +109,7 @@
 
 
                     <TextView
+                        android:id="@+id/ageTXT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -144,6 +148,7 @@
 
 
                     <TextView
+                        android:id="@+id/matchesTXT"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textColor="@color/black"
@@ -162,7 +167,8 @@
                     android:layout_gravity="center"
                     android:gravity="center"
                     android:layout_alignParentEnd="true"
-                    android:layout_marginRight="15dp">
+                    android:layout_marginRight="15dp"
+                    android:visibility="gone">
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -199,6 +205,7 @@
 
 
             <ImageView
+                android:id="@+id/playerImage"
                 android:layout_width="match_parent"
                 android:layout_height="195dp"
                 android:src="@drawable/rohit"
@@ -217,7 +224,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_marginRight="10dp">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -233,6 +241,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="11dp"/>
             <TextView
+                android:id="@+id/roleTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -265,6 +274,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="11dp"/>
             <TextView
+                android:id="@+id/styleTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -289,6 +299,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="11dp"/>
             <TextView
+                android:id="@+id/nationalityTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -323,6 +334,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="11dp"/>
             <TextView
+                android:id="@+id/dobTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
@@ -337,7 +349,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_alignParentEnd="true">
+            android:layout_alignParentEnd="true"
+            android:visibility="gone">
 
             <TextView
                 android:layout_width="wrap_content"

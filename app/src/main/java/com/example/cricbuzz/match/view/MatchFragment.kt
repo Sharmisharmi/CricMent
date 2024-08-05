@@ -18,12 +18,14 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.cricbuzz.CommonConstants.CommonConstants
 import com.example.cricbuzz.R
 import com.example.cricbuzz.home.adapter.LiveListAdapter
+import com.example.cricbuzz.home.model.CFData
+import com.example.cricbuzz.home.model.CFResponse
+import com.example.cricbuzz.home.viewmodel.HomeViewModel
 import com.example.cricbuzz.match.adapter.FinishedListAdapter
 import com.example.cricbuzz.match.adapter.UpcomingListAdapter
-import com.example.cricbuzz.match.model.MatchesData
-import com.example.cricbuzz.match.model.MatchesResponse
 import com.example.cricbuzz.match.viewmodel.MatchesViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -49,14 +51,14 @@ class MatchFragment : Fragment() {
     lateinit var liveCard:CardView
 
 
-    var upcoming_data = ArrayList<MatchesData>()
-    var finished_data = ArrayList<MatchesData>()
-    var live_data = ArrayList<MatchesData>()
+    var upcoming_data = ArrayList<CFData>()
+    var finished_data = ArrayList<CFData>()
+    var live_data = ArrayList<CFData>()
 
 
 
     var token = "ec471071441bb2ac538a0ff901abd249"
-    var apiKey = "3a207f19-8a19-424e-87eb-c503383a23d4"  // kaviya
+//    var apiKey = "3a207f19-8a19-424e-87eb-c503383a23d4"  // kaviya
 //    var apiKey = "ae7b0420-bacd-430d-ba08-c4398d66f56b" // mine
 //    var apiKey = "0b9a94d0-740c-4145-b7e0-935b515c9584" // for morning
 
@@ -66,6 +68,7 @@ class MatchFragment : Fragment() {
 //    var apiHost = "cricbuzz-cricket.p.rapidapi.com"
 
     private var matchesViewModel: MatchesViewModel? = null
+    private var homeViewModel: HomeViewModel? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -75,6 +78,7 @@ class MatchFragment : Fragment() {
         var view = inflater.inflate(R.layout.fragment_match, container, false)
 
         matchesViewModel = MatchesViewModel()
+        homeViewModel = HomeViewModel()
         initView(view)
 
         Glide.with(this).load(R.drawable.no_data_found).into(no_data);
@@ -144,18 +148,20 @@ class MatchFragment : Fragment() {
     }
 
     private fun getUpcomigMatch(onClick: String) {
-        matchesViewModel!!.getFinishedMatchesDataList(apiKey,0)
-            .observe(this) { res: MatchesResponse ->
+        homeViewModel!!.getMatchesList(CommonConstants.apiKey)
+            .observe(this) { res: CFResponse ->
 
                 upcoming_data.clear()
                 finished_data.clear()
                 live_data.clear()
 
                 if (res.status.toString().equals("success",ignoreCase = true)) {
+                    no_data_availableLL.visibility = View.GONE
+
 
                     for (i in 0 until res.data!!.size){
-                        if (res.data[i].matchStarted == false){
-                            upcoming_data.add( res.data[i])
+                        if (res.data[i].matchStarted == false && res.data[i].matchEnded == false){
+                            upcoming_data.add(res.data[i])
 
                         }else if (res.data[i].matchStarted == true && res.data[i].matchEnded == true){
                             finished_data.add(res.data[i])
@@ -164,7 +170,23 @@ class MatchFragment : Fragment() {
                         }
                     }
 
+                    Log.d("Upcoming_data", "getUpcomigMatch: "+upcoming_data.size)
+                    if (live_data.size>0) {
 
+                        live_recyclerView.visibility = View.VISIBLE
+                        finished_recyclerView.visibility = View.GONE
+                        upcoming_recyclerView.visibility = View.GONE
+
+                        live_recyclerView.setHasFixedSize(true)
+                        live_recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+
+                        live_recyclerView.adapter = LiveListAdapter(requireContext(), live_data)
+                    }else{
+                        live_recyclerView.visibility = View.GONE
+                        finished_recyclerView.visibility = View.GONE
+                        upcoming_recyclerView.visibility = View.GONE
+                        no_data_availableLL.visibility = View.VISIBLE
+                    }
 
                     if (onClick.equals("Upcoming",ignoreCase = true)){
                         upcoming_recyclerView.visibility = View.VISIBLE
@@ -176,7 +198,7 @@ class MatchFragment : Fragment() {
 
                         upcoming_recyclerView.adapter = UpcomingListAdapter(
                             requireContext(),
-                            upcoming_data as ArrayList<MatchesData>
+                            upcoming_data as ArrayList<CFData>
                         )
                     }else if (onClick.equals("Finished",ignoreCase = true)){
                         finished_recyclerView.visibility = View.VISIBLE
@@ -188,7 +210,7 @@ class MatchFragment : Fragment() {
 
                         finished_recyclerView.adapter = FinishedListAdapter(
                             requireContext(),
-                            finished_data as ArrayList<MatchesData>
+                            finished_data as ArrayList<CFData>
                         )
                     }else if (onClick.equals("Live",ignoreCase = true)){
 

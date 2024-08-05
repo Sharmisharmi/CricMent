@@ -1,13 +1,13 @@
 package com.example.cricbuzz.players.model
 
+import android.os.Parcelable
 import com.google.gson.annotations.Expose
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 
-
-
-class PlayerList {
+class PlayerList: Serializable {
 
 
     @SerializedName("id")

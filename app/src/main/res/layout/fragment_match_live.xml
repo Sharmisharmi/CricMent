@@ -4,15 +4,190 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/white">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/finishedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginVertical="8dp"
+        android:layout_marginHorizontal="15dp"
+        app:cardElevation="5dp"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:padding="10dp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1.2">
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/team1ImgFC"
+                        android:layout_width="40dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/india_flag"/>
+
+                    <TextView
+                        android:id="@+id/team1TxtFC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="IND"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16dp"/>
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/team1scoreFC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="365-5 "
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="11dp"
+                            android:textColor="@color/pencil_black"
+                            />
+                        <TextView
+                            android:id="@+id/team1overFC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="44.5 "
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="9dp"
+                            android:textColor="@color/red" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/team2ImgFC"
+                        android:layout_width="40dp"
+                        android:layout_height="25dp"
+                        android:src="@drawable/india_flag"/>
+
+                    <TextView
+                        android:id="@+id/team2TxtFC"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="PAK"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/black"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="16dp"/>
+
+
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_marginLeft="10dp">
+
+                        <TextView
+                            android:id="@+id/team2scoreFC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="165-5 "
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textSize="11dp"
+                            android:textColor="@color/pencil_black"
+                            />
+                        <TextView
+                            android:id="@+id/team2overFC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="24.5 "
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="9dp"
+                            android:textColor="@color/red" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="match_parent"
+                android:background="@color/light_black"
+                android:layout_marginHorizontal="10dp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/countryTxtFC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center"
+                    android:text="India won"
+                    android:textColor="@color/primary"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/byRunsTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" by 5 wickets "
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="11dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"
+                    android:gravity="center"/>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+
+    </androidx.cardview.widget.CardView>
 
     <LinearLayout
+        android:id="@+id/liveMatchLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="6dp"
         android:background="@drawable/border_bg"
         android:layout_marginVertical="15dp"
-        android:layout_marginHorizontal="12dp">
+        android:layout_marginHorizontal="12dp"
+        android:visibility="gone">
 
 
         <LinearLayout
@@ -23,6 +198,7 @@
             android:layout_marginLeft="15dp">
 
             <TextView
+                android:id="@+id/targetTXT"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -55,7 +231,7 @@
                             android:id="@+id/team1Img"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/india_flag"
+                            android:src="@drawable/transparent_logo"
                             android:layout_gravity="center"/>
 
                         <LinearLayout
@@ -178,7 +354,7 @@
                             android:id="@+id/team2Img"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:src="@drawable/india_flag"
+                            android:src="@drawable/transparent_logo"
                             android:layout_gravity="center"/>
                     </LinearLayout>
 
@@ -189,6 +365,7 @@
 
 
             <RelativeLayout
+                android:id="@+id/runsDetailsRL"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="15dp"
@@ -266,6 +443,237 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:id="@+id/upcomingMatchesLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/border_bg"
+        android:layout_marginVertical="18dp"
+        android:layout_marginHorizontal="10dp"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/matchNameTXTUC"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="India tour of Australia"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="13dp"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:layout_marginTop="5dp"
+            android:layout_marginHorizontal="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="2"
+            android:background="@drawable/border_bg"
+            android:layout_marginTop="5dp"
+            android:paddingVertical="25dp">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.27"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/round_corner_stroke"
+                        android:padding="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/transparent_logo"
+                            android:layout_gravity="center"
+                            android:id="@+id/team1ImgUC"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="0.6"
+                        android:layout_gravity="center"
+                        android:gravity="start"
+                        android:layout_marginLeft="5dp">
+
+
+                        <TextView
+                            android:id="@+id/team1TxtUC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="India"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/pencil_black"
+                            android:textSize="15dp"/>
+
+
+
+                    </LinearLayout>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/pencil_black"
+                android:text="vs"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="16dp"
+                android:layout_gravity="center"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="@color/colorthree"
+                android:paddingHorizontal="5dp"/>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:gravity="center">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="1"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_gravity="center">
+
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_gravity="center"
+                        android:gravity="right"
+                        android:layout_weight="0.6"
+                        android:layout_marginRight="5dp">
+
+
+                        <TextView
+                            android:id="@+id/team2TxtUC"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Pakistan"
+                            android:fontFamily="@font/poppins_semibold"
+                            android:textColor="@color/pencil_black"
+                            android:textSize="15dp"/>
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.27"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:background="@drawable/round_corner_stroke"
+                        android:padding="4dp">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/team2ImgUC"
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:src="@drawable/transparent_logo"
+                            android:layout_gravity="center"
+                            />
+                    </LinearLayout>
+
+
+
+                </LinearLayout>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingVertical="5dp">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                android:layout_width="4dp"
+                android:layout_height="25dp"
+                app:cardBackgroundColor="@color/primary"
+                app:cardCornerRadius="4dp"
+                app:cardElevation="5dp"/>
+
+            <TextView
+                android:id="@+id/dateUC"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="21 September, 2023 "
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@color/pencil_black"
+                android:layout_gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="15dp"
+                android:layout_toEndOf="@+id/card"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true">
+
+
+
+
+
+                <TextView
+                    android:id="@+id/locationUC"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:text="Galle International Stadium, Srilanka"
+                    android:fontFamily="@font/poppins_regular"
+                    android:textSize="10dp"
+                    android:layout_marginLeft="4dp" />
+                <ImageView
+                    android:id="@+id/img"
+                    android:layout_width="12dp"
+                    android:layout_height="10dp"
+                    android:src="@drawable/location"
+                    android:layout_marginTop="3dp"
+                    android:layout_toEndOf="@id/locationUC"/>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+    </LinearLayout>
 
     <HorizontalScrollView
         android:layout_width="match_parent"
@@ -282,18 +690,22 @@
 
     </HorizontalScrollView>
 
-
-
-
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:visibility="gone">
 
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:id="@+id/battingStatsInnings1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         app:cardCornerRadius="5dp"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -301,79 +713,62 @@
             android:orientation="vertical">
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="6"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="5dp"
-        android:background="@color/colorthree"
-        android:layout_marginBottom="15dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textColor="@color/black"
-            android:text="Batter"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="3"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:background="@color/colorthree"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/black"
+                    android:text="Batter"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="R(B)"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="R/O"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="4s"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="6s"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="SR"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"
-            android:gravity="end"/>
+            </LinearLayout>
 
-    </LinearLayout>
 
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
     <LinearLayout
         android:id="@+id/batter_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        />
+        android:orientation="vertical" />
+
+            </ScrollView>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
-
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
+        android:id="@+id/bowlingStatsInnings1"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_weight="1"
         app:cardCornerRadius="5dp"
         android:layout_marginHorizontal="12dp"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -381,58 +776,126 @@
             android:orientation="vertical">
 
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="4"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:background="@color/colorthree"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/black"
+                    android:text="Bowler"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="R/O"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="W"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"
+                    android:layout_gravity="end"
+                    android:gravity="end"/>
+
+
+            </LinearLayout>
+
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
     <LinearLayout
+        android:id="@+id/bowling_ll_inning1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="5"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="5dp"
-        android:background="@color/colorthree"
-        android:layout_marginBottom="5dp">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:textColor="@color/black"
-            android:text="Bowler"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
+        android:orientation="vertical"
+        />
+            </ScrollView>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="W-R"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="Overs"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"/>
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:textColor="@color/black"
-            android:text="Economy"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="12dp"
-            android:gravity="end"/>
-
+    </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
 
     <LinearLayout
-        android:id="@+id/bowler_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:visibility="gone">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/battingStatsInnings2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:cardCornerRadius="5dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="3"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:background="@color/colorthree"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/black"
+                    android:text="Batter"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="R/O"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+
+
+            </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/batter_ll_inning2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -440,4 +903,163 @@
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/bowlingStatsInnings2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        app:cardCornerRadius="5dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_weight="1"
+                android:weightSum="4"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="5dp"
+                android:background="@color/colorthree"
+                android:layout_marginBottom="15dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:textColor="@color/black"
+                    android:text="Bowler"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="R/O"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:text="W"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textSize="12dp"
+                    android:layout_gravity="end"
+                    android:gravity="end"/>
+
+
+            </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/bowling_ll_inning2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/NALayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/no_data_img"
+                android:layout_width="125dp"
+                android:layout_height="125dp"
+                android:src="@drawable/no_data_found"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_vertical"
+                >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Match will start on"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/date_for_NA"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="23 September 2023"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/red"
+                    android:textSize="18dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/no_data_availableLL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:visibility="gone">
+
+
+        <ImageView
+            android:id="@+id/no_data"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@drawable/no_data_found"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Oops..!!"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/red"
+            android:layout_marginTop="30dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No matches found today"
+            android:layout_gravity="center"
+            android:fontFamily="@font/poppins_medium"
+            android:textColor="@color/black"/>
+
+
+    </LinearLayout>
+
 </LinearLayout>

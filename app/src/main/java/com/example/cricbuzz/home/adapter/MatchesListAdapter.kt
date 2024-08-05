@@ -36,8 +36,7 @@ class MatchesListAdapter(context: Context, data: List<MatchList>?) : RecyclerVie
     override fun onBindViewHolder(holder: MatchesListAdapter.ViewHolder, position: Int) {
 
         holder.location.text=data[position].venue.toString()
-        holder.team1.text= data[position].teamInfo!![0].shortname.toString()
-        holder.team2.text= data[position].teamInfo!![1].shortname.toString()
+
 
         val ldt: LocalDateTime = LocalDateTime.parse(data[position].dateTimeGMT.toString())
         val formatter = DateTimeFormatter.ofPattern("dd MMM, EEEE- hh:mm a", Locale.ENGLISH)
@@ -46,11 +45,21 @@ class MatchesListAdapter(context: Context, data: List<MatchList>?) : RecyclerVie
         holder.dateTXT.text= date_time.split("-").toTypedArray()[0]
         holder.timeTXT.text= date_time.split("- ").toTypedArray()[1]
 
-        if (!data[position].teamInfo!![0].img.toString().isNullOrEmpty())
-            Picasso.get().load(data[position].teamInfo!![0].img).into(holder.team1Image)
 
-        if (!data[position].teamInfo!![1].img.toString().isNullOrEmpty())
-            Picasso.get().load(data[position].teamInfo!![1].img).into(holder.team2Image)
+        if (!data[position].teamInfo.isNullOrEmpty()) {
+            holder.team1.text = data[position].teamInfo!![0].shortname.toString()
+            holder.team2.text = data[position].teamInfo!![1].shortname.toString()
+
+            if (!data[position].teamInfo!![0].img.toString().isNullOrEmpty())
+                Picasso.get().load(data[position].teamInfo!![0].img).into(holder.team1Image)
+
+            if (!data[position].teamInfo!![1].img.toString().isNullOrEmpty())
+                Picasso.get().load(data[position].teamInfo!![1].img).into(holder.team2Image)
+
+        }else{
+            holder.team1.text= data[position].teams!![0].toString()
+            holder.team2.text= data[position].teams!![1]
+        }
 //
 //        holder.sportsCard.setOnClickListener {
 //            context.startActivity(Intent(context,CategoryDetailsActivity::class.java).putExtra("category_id",data[position].cat_id))

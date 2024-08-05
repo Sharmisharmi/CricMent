@@ -1,23 +1,21 @@
 package com.example.cricbuzz.match.adapter
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cricbuzz.R
-import com.example.cricbuzz.home.NewsLayout
-import com.example.cricbuzz.match.model.MatchesData
+import com.example.cricbuzz.players.model.PlayerData
+import com.example.cricbuzz.players.model.PlayerList
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class PlayingXIAdapter(context: Context, data: List<MatchesData>?) : RecyclerView.Adapter<PlayingXIAdapter.ViewHolder>() {
+class PlayingXIAdapter(context: Context, data: MutableList<PlayerList>?) : RecyclerView.Adapter<PlayingXIAdapter.ViewHolder>() {
 
     private var context : Context
-    var data:List<MatchesData>
+    var data:List<PlayerList>
 
 
     init {
@@ -32,18 +30,13 @@ class PlayingXIAdapter(context: Context, data: List<MatchesData>?) : RecyclerVie
 
     override fun onBindViewHolder(holder: PlayingXIAdapter.ViewHolder, position: Int) {
 
-//        holder.player.text=data[position].shortName.toString()
-//
-//        when(data[position].role.toString()){
-//            "all"-> holder.role.text="All rounder"
-//            "bowl"-> holder.role.text="Bowler"
-//            "bat"-> holder.role.text="Batsman"
-//        }
+        holder.player.text=data[position].name.toString()
+        holder.role.text = data[position].role.toString()
 
-//
-//
-//        Picasso.get().load(data[position].image_url).into(holder.image)
-//
+        if (data[position].playerImg != null){
+            Picasso.get().load(data[position].playerImg).into(holder.playerImg)
+        }
+
 
 
     }

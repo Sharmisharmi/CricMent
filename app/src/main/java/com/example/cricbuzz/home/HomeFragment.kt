@@ -6,66 +6,115 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.RecyclerView
-import com.arindicatorview.ARIndicatorView
-import com.example.cricbuzz.R
+import com.example.cricbuzz.CommonConstants.CommonConstants
+import com.example.cricbuzz.databinding.FragmentHomeBinding
 import com.example.cricbuzz.home.adapter.HomeAdapter
 import com.example.cricbuzz.home.adapter.LatestNewsAdapter
+import com.example.cricbuzz.home.model.CFResponse
+import com.example.cricbuzz.home.model.InternationalSportsNewsResponse
+import com.example.cricbuzz.home.viewmodel.HomeViewModel
 
 
 class HomeFragment : Fragment() {
 
 
-    lateinit var latest_news_recyclerView:RecyclerView
-    lateinit var recycler:RecyclerView
-    lateinit var arIndicatorView:ARIndicatorView
+    lateinit var binding:FragmentHomeBinding
+
+
+    var homeViewModel =HomeViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
-        var view = inflater.inflate(R.layout.fragment_home, container, false)
-
-        initView(view)
+        binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
-        recycler.setHasFixedSize(true)
-
-        recycler.setLayoutManager(
-            LinearLayoutManager(
-                context,
-                LinearLayoutManager.HORIZONTAL, false
-            )
-        )
-
-        recycler.setAdapter(HomeAdapter(requireContext(),3))
 
 
-        // add pager behavior
-        // add pager behavior
+
+
+
+        getMatchesAPI()
+        getNewsAPI()
+
+
+
+        return binding.root
+    }
+
+    private fun getMatchesAPI() {
+        homeViewModel!!.getMatchesList(CommonConstants.apiKey)
+            .observe(this) { res: CFResponse ->
+
+                if (res.status.toString().equals("success",ignoreCase = true)){
+
+                if (res.data!!.size>0) {
+                    var data = res.data
+                    binding.recycler.setHasFixedSize(true)
+
+                    binding.recycler.setLayoutManager(
+                        LinearLayoutManager(
+                            context,
+                            LinearLayoutManager.HORIZONTAL, false
+                        )
+                    )
+
+                    binding.recycler.setAdapter(HomeAdapter(requireContext(),data))
+
+
+                    var datasize = 0
+                    // add pager behavior
+                    // add pager behavior
 //        val snapHelper = PagerSnapHelper()
 //        snapHelper.attachToRecyclerView(recycler)
 
-        arIndicatorView.attachTo(recycler, true)
-        arIndicatorView.numberOfIndicators = 3
+                    if (data.size<=6){
+                        binding.arIndicator.attachTo(binding.recycler, true)
+                        binding.arIndicator.numberOfIndicators = data.size
+                    }else{
+                        binding.arIndicator.attachTo(binding.recycler, true)
+                        binding.arIndicator.numberOfIndicators = 6
+                    }
 
 
 
+                }else{
+                    binding.recycler.visibility = View.GONE
+
+                }
+                }
+                else{
+                   binding.recycler.visibility = View.GONE
+
+                }
+            }
+
+    }
+    private fun getNewsAPI() {
+        homeViewModel!!.getSportsNewsList(CommonConstants.news_apiKey)
+            .observe(this) { res: InternationalSportsNewsResponse ->
+
+                if (res.status.toString().equals("ok", ignoreCase = true)) {
+
+                    if (res.articles!!.size > 0) {
+                        var data = res.articles
+                        binding.latestNewsRecyclerView.visibility= View.VISIBLE
+                        binding.latestNewsRecyclerView.setHasFixedSize(true)
+                        binding.latestNewsRecyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
+                        binding.latestNewsRecyclerView.adapter = LatestNewsAdapter(requireContext(), data)
+
+                    } else {
+                        binding.latestNewsRecyclerView.visibility = View.GONE
+
+                    }
 
 
-        latest_news_recyclerView.visibility= View.VISIBLE
-        latest_news_recyclerView.setHasFixedSize(true)
-        latest_news_recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL,false)
-        latest_news_recyclerView.adapter = LatestNewsAdapter(requireContext(), 8)
+                }
+            }
 
-        return view
     }
 
-    private fun initView(view: View) {
-        latest_news_recyclerView =view.findViewById(R.id.latest_news_recyclerView)
-        recycler =view.findViewById(R.id.recycler)
-        arIndicatorView =view.findViewById(R.id.ar_indicator)
-    }
+
 }

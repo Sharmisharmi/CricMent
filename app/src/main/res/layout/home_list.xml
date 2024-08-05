@@ -7,11 +7,13 @@
 
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginVertical="15dp"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:layout_marginHorizontal="15dp">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -24,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:padding="15dp"
-                android:background="@drawable/gradient_banner">
+                android:background="@drawable/gradient_banner_bg">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -33,13 +35,15 @@
 
 
                     <LinearLayout
+                        android:id="@+id/liveLL"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal"
                         android:background="@drawable/round_corner"
                         android:layout_alignParentEnd="true"
                         android:backgroundTint="@color/white"
-                        android:paddingHorizontal="10dp">
+                        android:paddingHorizontal="10dp"
+                        android:visibility="gone">
 
                         <ImageView
                             android:layout_width="8dp"
@@ -60,9 +64,10 @@
                     </LinearLayout>
 
                     <TextView
+                        android:id="@+id/matchName"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/white"
+                        android:textColor="@color/primary"
                         android:text="Asia Cup 2023"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="10dp"/>
@@ -88,47 +93,84 @@
                             android:layout_weight="1">
 
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/india_flag"/>
+                                android:id="@+id/team1NameImage"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                app:civ_border_width="1dp"
+                                android:src="@drawable/transparent_logo"
+                                android:layout_gravity="center_vertical"/>
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginLeft="15dp"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical">
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical">
+
+
 
                             <TextView
+                                android:id="@+id/teamName1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="India"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/white"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/black"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"
+                                android:gravity="center_vertical"
                                 android:textSize="16dp"/>
                             <ImageView
+                                android:id="@+id/team1BBImage"
                                 android:layout_width="12dp"
                                 android:layout_height="12dp"
                                 android:src="@drawable/cricket_bat"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="5dp"/>
+                                </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/toBatTXT1"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Yet to bat"
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="11dp"
+                                    android:textColor="#F44336"
+                                    android:visibility="gone"/>
+
+                                <TextView
+                                    android:id="@+id/team1Score"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="365/5 "
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="14dp"
+                                    android:textColor="@color/black"
+                                    />
+                                <TextView
+                                    android:id="@+id/team1Wicket"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="44.5 "
+                                    android:fontFamily="@font/poppins_medium"
+                                    android:textSize="11dp"
+                                    android:textColor="@color/red"
+                                    android:layout_marginLeft="6dp"/>
+                            </LinearLayout>
+
+                            </LinearLayout>
+
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="365/5 "
-                                android:fontFamily="@font/poppins_medium"
-                                android:textSize="11dp"
-                                android:textColor="@color/white"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="44.5 "
-                                android:fontFamily="@font/poppins_light"
-                                android:textSize="9dp"
-                                android:textColor="@color/yellow" />
-                        </LinearLayout>
                     </LinearLayout>
 
                     <ImageView
@@ -148,39 +190,134 @@
                             android:layout_weight="1"
                             >
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginRight="15dp"
+                                android:layout_gravity="center_vertical"
+                                android:gravity="center_vertical">
 
 
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:layout_gravity="center_vertical"
+                                    android:gravity="center_vertical">
+
+                            <ImageView
+                                android:id="@+id/team2BBImage"
+                                android:layout_width="12dp"
+                                android:layout_height="12dp"
+                                android:src="@drawable/cricket_ball"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginRight="5dp"/>
                             <TextView
+                                android:id="@+id/teamName2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="Pakistan"
-                                android:fontFamily="@font/poppins_semibold"
-                                android:textColor="@color/white"
+                                android:fontFamily="@font/poppins_medium"
+                                android:textColor="@color/black"
                                 android:layout_gravity="center_vertical"
-                                android:layout_marginRight="10dp"
-                                android:textSize="16dp"/>
+                                android:textSize="16dp"
+                                android:gravity="center_vertical" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content">
+
+                                    <TextView
+                                        android:id="@+id/toBatTXT2"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="Yet to bat"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:textSize="11dp"
+                                        android:textColor="#F44336"
+                                        android:visibility="gone"/>
+                                    <TextView
+                                        android:id="@+id/team2Score"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="365/5 "
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:textSize="14dp"
+                                        android:textColor="@color/black"
+                                        />
+                                    <TextView
+                                        android:id="@+id/team2Wicket"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="44.5 "
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:textSize="11dp"
+                                        android:textColor="@color/red"
+                                        android:layout_marginLeft="6dp"/>
+                                </LinearLayout>
+
+
+                            </LinearLayout>
+
                             <de.hdodenhof.circleimageview.CircleImageView
-                                android:layout_width="20dp"
-                                android:layout_height="20dp"
-                                android:src="@drawable/india_flag"/>
+                                android:id="@+id/team2Image"
+                                android:layout_width="44dp"
+                                android:layout_height="44dp"
+                                app:civ_border_width="1dp"
+                                android:src="@drawable/transparent_logo"/>
+
+
                         </LinearLayout>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Yet to bat"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="11dp"
-                            android:textColor="#F44336"/>
+
                     </LinearLayout>
                 </LinearLayout>
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp">
+
                 <TextView
+                    android:id="@+id/statusTXT"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="India choose to bat"
                     android:fontFamily="@font/poppins_medium"
-                    android:textSize="10dp"
-                    android:textColor="@color/white"/>
+                    android:textSize="12dp"
+                    android:textColor="@color/black"/>
+
+                <LinearLayout
+                    android:id="@+id/timeLL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:visibility="gone">
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#191919"
+                        android:text="Starts at"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="10dp"
+                        android:layout_alignParentEnd="true" />
+                    <TextView
+                        android:id="@+id/time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/red"
+                        android:text="04:30 PM"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="10dp"
+                        android:layout_marginLeft="8dp"
+                        />
+
+                </LinearLayout>
+
+                </RelativeLayout>
+
 
             </LinearLayout>
 

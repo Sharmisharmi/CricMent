@@ -33,7 +33,7 @@ class SquadsListAdapter(context: Context, data: List<PlayerData>?, onClickListen
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         holder.teamName.text=data[position].shortname.toString()
-        holder.playerCount.text= data[position].players!!.size.toString()
+        holder.playerCount.text= data[position].players!!.size.toString() +" Players"
 //
 //
         Picasso.get().load(data[position].img).into(holder.image)
@@ -41,7 +41,7 @@ class SquadsListAdapter(context: Context, data: List<PlayerData>?, onClickListen
 
 
         holder.poolLL.setOnClickListener {
-            onClickListener.teams(data)
+            onClickListener.teams(data[position])
         }
 
     }
@@ -61,7 +61,7 @@ class SquadsListAdapter(context: Context, data: List<PlayerData>?, onClickListen
     }
 
     interface squadsonClickListener{
-        fun teams(i: List<PlayerData>)
+        fun teams(i: PlayerData)
     }
 
 }

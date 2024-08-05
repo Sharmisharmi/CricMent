@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,9 +26,10 @@
             android:src="@drawable/back_arrow"/>
 
         <TextView
+            android:id="@+id/newsName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="News Title"
+            android:text="Sports News"
             android:fontFamily="@font/poppins_semibold"
             android:textColor="@color/black"
             android:layout_gravity="center"
@@ -54,6 +61,7 @@
 
 
     <TextView
+        android:id="@+id/newsTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="IND vs AUS Live Score, 3rd ODI: Rohit Sharma Hits 50 But Washington Sundar Departs, India 1 Down In Chase"
@@ -61,6 +69,7 @@
         android:layout_marginTop="15dp"
         android:textColor="@color/black"/>
     <TextView
+        android:id="@+id/newsDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="27 Sept 2023 10:30 pm"
@@ -72,6 +81,7 @@
         android:gravity="end"/>
 
         <TextView
+            android:id="@+id/newsDesc"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="India vs Australia 3rd ODI Live Score Updates:Rohit Sharma is dealing in boundaries and has brought up his 52nd ODI half-century. He is also getting a strong support from Washington Sundar as India got the momentum in the chase of 353 against Australia. On the other hand, Australia bowlers are eyeing some quick wickets in order to dominate Team India. Earlier. top knocks from Mitchell Marsh and Steve Smith propelled Australia to 352/7 in 50 overs against India in the third ODI match. Opting to bat first, Australia started off on a brilliant note as their openers David Warner and Pat Cummins smashed their respective half-centuries."
@@ -80,12 +90,20 @@
             android:layout_marginTop="15dp"/>
 
         <TextView
+            android:id="@+id/newsContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="India vs Australia 3rd ODI Live Score Updates:Rohit Sharma is dealing in boundaries and has brought up his 52nd ODI half-century. He is also getting a strong support from Washington Sundar as India got the momentum in the chase of 353 against Australia. On the other hand, Australia bowlers are eyeing some quick wickets in order to dominate Team India."
             android:fontFamily="@font/poppins_medium"
             android:textSize="12dp"
-            android:layout_marginTop="15dp"/>
+            android:layout_marginTop="15dp"
+           />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:visibility="invisible"/>
+
 
     </LinearLayout>
 
@@ -95,4 +113,55 @@
 
     </ScrollView>
 
-</LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="end">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/readMorecard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardElevation="0dp"
+        app:cardUseCompatPadding="true"
+        app:cardCornerRadius="5dp"
+        app:cardBackgroundColor="@color/primary"
+        android:layout_marginHorizontal="30dp"
+        android:layout_gravity="end"
+        android:layout_marginVertical="5dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingHorizontal="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Read Maore"
+                android:textColor="@color/white"
+                android:layout_gravity="center"
+                android:gravity="center"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

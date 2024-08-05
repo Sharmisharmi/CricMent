@@ -14,7 +14,6 @@ import com.example.cricbuzz.databinding.FragmentMatchPointBinding
 class MatchPointFragment : Fragment() {
     private var binding: FragmentMatchPointBinding? = null
 
-    private val binding1 get() = binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

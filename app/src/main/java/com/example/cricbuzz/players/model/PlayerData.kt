@@ -22,5 +22,5 @@ class PlayerData{
 
 @SerializedName("players")
 @Expose
- var players: MutableList<PlayerList?>? = null
+ var players: MutableList<PlayerList>? = null
 }

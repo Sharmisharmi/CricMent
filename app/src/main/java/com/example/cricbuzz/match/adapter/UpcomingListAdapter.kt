@@ -1,6 +1,8 @@
 package com.example.cricbuzz.match.adapter
 
 import android.content.Context
+import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -8,20 +10,26 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cricbuzz.CommonConstants.CommonConstants
 import com.example.cricbuzz.R
+import com.example.cricbuzz.home.model.CFData
+import com.example.cricbuzz.match.MatchDetails
 import com.example.cricbuzz.match.model.MatchesData
 import com.squareup.picasso.Picasso
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
-import java.time.OffsetDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.collections.ArrayList
 
-class UpcomingListAdapter(context: Context, data: ArrayList<MatchesData>) : RecyclerView.Adapter<UpcomingListAdapter.ViewHolder>() {
+class UpcomingListAdapter(context: Context, data: ArrayList<CFData>) : RecyclerView.Adapter<UpcomingListAdapter.ViewHolder>() {
 
     private var context : Context
-    var data:ArrayList<MatchesData>
+    var data:ArrayList<CFData>
+    var editor: SharedPreferences.Editor? = null
+
 
 
     init {
@@ -37,7 +45,9 @@ class UpcomingListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: UpcomingListAdapter.ViewHolder, position: Int) {
 
-            try {
+        editor = context.getSharedPreferences(CommonConstants.CRICKETBUZZ, AppCompatActivity.MODE_PRIVATE).edit()
+
+        try {
                   holder.team1.text =
                       data[position].teamInfo!![0].shortname.toString()
                   holder.team2.text =
@@ -46,8 +56,7 @@ class UpcomingListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
 
               }
 
-        holder.location.text =
-                    data[position].venue.toString()
+        holder.location.text = data[position].venue.toString()
 
 
         val ldt: LocalDateTime = LocalDateTime.parse(data[position].dateTimeGMT.toString())
@@ -59,20 +68,29 @@ class UpcomingListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
         holder.date.text =date_time.split("- ").toTypedArray()[0]
         holder.time.text =date_time.split("- ").toTypedArray()[1]
 
+        if (data[position].teamInfo != null) {
 
-        if (!data[position].teamInfo!![0].img.toString().isNullOrEmpty()) {
-            Picasso.get().load(data[position].teamInfo!![0].img.toString()).into(holder.team1Img)
+            if (data[position].teamInfo!![0].img != null) {
+                Picasso.get().load(data[position].teamInfo!![0].img.toString())
+                    .into(holder.team1Img)
+            }
+
+
+            if (data[position].teamInfo!![1].img != null) {
+                Picasso.get().load(data[position].teamInfo!![1].img.toString())
+                    .into(holder.team2Img)
+            }
         }
 
 
-        if (!data[position].teamInfo!![1].img.toString().isNullOrEmpty()) {
-            Picasso.get().load(data[position].teamInfo!![1].img.toString()).into(holder.team2Img)
+        holder.matchesCard.setOnClickListener {
+            if (data[position].id.toString() != null) {
+                editor!!.putString(CommonConstants.ID, data[position].id.toString())
+                editor!!.commit()
+                editor!!.apply()
+                context.startActivity(Intent(context, MatchDetails::class.java))
+            }
         }
-
-
-//        holder.liveCard.setOnClickListener {
-//            context.startActivity(Intent(context, MatchDetails::class.java))
-//        }
 
 
     }
@@ -91,7 +109,7 @@ class UpcomingListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
         var location : TextView = itemView.findViewById(R.id.location)
         var team1Img : ImageView = itemView.findViewById(R.id.team1Img)
         var team2Img : ImageView = itemView.findViewById(R.id.team2Img)
-//        var liveCard : CardView = itemView.findViewById(R.id.liveCard)
+        var matchesCard : CardView = itemView.findViewById(R.id.matchesCard)
 
     }
 

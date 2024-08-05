@@ -9,15 +9,19 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cricbuzz.CommonConstants.CommonConstants
 import com.example.cricbuzz.R
 import com.example.cricbuzz.home.adapter.BISAdapter
-import com.example.cricbuzz.home.adapter.LiveListAdapter
+import com.example.cricbuzz.home.model.InternationalSportsNewsResponse
+import com.example.cricbuzz.home.viewmodel.HomeViewModel
 
 
 class HighLightFragment : Fragment() {
 
     lateinit var best_sport_recyclerView:RecyclerView
     lateinit var newsLayout:LinearLayout
+
+    var homeViewModel:HomeViewModel = HomeViewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,11 +41,27 @@ class HighLightFragment : Fragment() {
     }
 
     private fun getBestInSports() {
-        best_sport_recyclerView.visibility= View.VISIBLE
-        best_sport_recyclerView.setHasFixedSize(true)
-        best_sport_recyclerView.layoutManager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL,false)
+        homeViewModel!!.getSportsNewsList(CommonConstants.news_apiKey)
+            .observe(this) { res: InternationalSportsNewsResponse ->
 
-        best_sport_recyclerView.adapter = BISAdapter(requireContext(), 8)
+                if (res.status.toString().equals("ok", ignoreCase = true)) {
+
+                    if (res.articles!!.size > 0) {
+                        var data = res.articles
+                        best_sport_recyclerView.visibility = View.VISIBLE
+                        best_sport_recyclerView.setHasFixedSize(true)
+                        best_sport_recyclerView.layoutManager =
+                            LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
+
+                        best_sport_recyclerView.adapter = BISAdapter(requireContext(), data)
+                    } else {
+                        best_sport_recyclerView.visibility = View.GONE
+
+                    }
+
+
+                }
+            }
     }
 
     private fun initView(view: View) {

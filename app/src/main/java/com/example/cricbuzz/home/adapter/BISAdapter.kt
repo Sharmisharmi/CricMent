@@ -4,19 +4,23 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cricbuzz.R
+import com.example.cricbuzz.home.model.ArticleData
+import com.example.cricbuzz.home.model.SourceData
+import com.squareup.picasso.Picasso
 
-class BISAdapter (context: Context, i: Int) : RecyclerView.Adapter<BISAdapter.ViewHolder>() {
+class BISAdapter(context: Context, data: List<ArticleData>?) : RecyclerView.Adapter<BISAdapter.ViewHolder>() {
 
     private var context : Context
-    var i:Int
+    var data:List<ArticleData>
 
 
     init {
         this.context=context
-        this.i = i
+        this.data = data!!
 
     }
 
@@ -26,27 +30,23 @@ class BISAdapter (context: Context, i: Int) : RecyclerView.Adapter<BISAdapter.Vi
 
     override fun onBindViewHolder(holder: BISAdapter.ViewHolder, position: Int) {
 
-//        holder.title.text=data[position].cat_name.toString()
-//
-//
-//        Picasso.get().load(data[position].image_url).into(holder.image)
-//
-//        holder.sportsCard.setOnClickListener {
-//            context.startActivity(Intent(context,CategoryDetailsActivity::class.java).putExtra("category_id",data[position].cat_id))
-//        }
+        holder.newsTitle.text=data[position].title.toString()
 
-//        holder.news_desc.setSelected(true);
+        if (data[position].urlToImage != null ||  data[position].urlToImage != ""){
+            Picasso.get().load(data[position].urlToImage).into(holder.newsImage)
+        }
+
     }
 
 
     override fun getItemCount(): Int {
-        return i
+        return data.size
     }
 
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
-//        var news_desc : TextView = itemView.findViewById(R.id.news_desc)
-//        var image : ImageView = itemView.findViewById(R.id.images)
+        var newsTitle : TextView = itemView.findViewById(R.id.newsTitle)
+        var newsImage : ImageView = itemView.findViewById(R.id.newsImage)
 //        var sportsCard : CardView = itemView.findViewById(R.id.sportsCard)
 
     }

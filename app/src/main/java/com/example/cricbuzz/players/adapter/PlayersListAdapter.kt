@@ -5,20 +5,26 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.cricbuzz.R
 import com.example.cricbuzz.players.PlayerInfo
+import com.example.cricbuzz.players.model.PlayerList
+import com.squareup.picasso.Picasso
 
-class PlayersListAdapter (context: Context, i: Int) : RecyclerView.Adapter<PlayersListAdapter.ViewHolder>() {
+class PlayersListAdapter(context: Context, data: MutableList<PlayerList>?, status: String) : RecyclerView.Adapter<PlayersListAdapter.ViewHolder>() {
 
     private var context : Context
-    var i:Int
+    var data:MutableList<PlayerList>
+    var status:String
 
 
     init {
         this.context=context
-        this.i = i
+        this.data = data!!
+        this.status = status!!
 
     }
 
@@ -28,27 +34,67 @@ class PlayersListAdapter (context: Context, i: Int) : RecyclerView.Adapter<Playe
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
-//        holder.title.text=data[position].cat_name.toString()
-//
-//
-//        Picasso.get().load(data[position].image_url).into(holder.image)
-//
-        holder.playerCard.setOnClickListener {
-            context.startActivity(Intent(context, PlayerInfo::class.java))
+        if (status.equals("Batsman")){
+            if (data[position].role.toString().equals("Batsman")){
+                holder.playerName.text=data[position].name.toString()
+
+                if (data[position].role.toString().contains("Allrounder")){
+                    holder.roleTXT.text = "Allrounder"
+                }else {
+                    holder.roleTXT.text=data[position].role.toString()
+                }
+
+
+                Picasso.get().load(data[position].playerImg).into(holder.teamImage)
+
+            }
+        }else if (status.equals("Bowler")){
+            if (data[position].role.toString().equals("Bowler")){
+                holder.playerName.text=data[position].name.toString()
+
+                if (data[position].role.toString().contains("Allrounder")){
+                    holder.roleTXT.text = "Allrounder"
+                }else {
+                    holder.roleTXT.text=data[position].role.toString()
+                }
+
+
+                Picasso.get().load(data[position].playerImg).into(holder.teamImage)
+
+            }
+        }else if (status.equals("All")){
+
+                holder.playerName.text=data[position].name.toString()
+
+                if (data[position].role.toString().contains("Allrounder")){
+                    holder.roleTXT.text = "Allrounder"
+                }else {
+                    holder.roleTXT.text=data[position].role.toString()
+                }
+
+
+                Picasso.get().load(data[position].playerImg).into(holder.teamImage)
+
         }
 
-//        holder.news_desc.setSelected(true);
+
+        holder.playerCard.setOnClickListener {
+            context.startActivity(Intent(context, PlayerInfo::class.java).putExtra("PlayerInfo",data[position]))
+
+        }
+
     }
 
 
     override fun getItemCount(): Int {
-        return i
+        return data.size
     }
 
     inner class ViewHolder (itemView: View): RecyclerView.ViewHolder(itemView){
 
-//        var news_desc : TextView = itemView.findViewById(R.id.news_desc)
-//        var image : ImageView = itemView.findViewById(R.id.images)
+        var playerName : TextView = itemView.findViewById(R.id.playerName)
+        var roleTXT : TextView = itemView.findViewById(R.id.roleTXT)
+        var teamImage : ImageView = itemView.findViewById(R.id.teamImage)
         var playerCard : CardView = itemView.findViewById(R.id.playerCard)
 
     }

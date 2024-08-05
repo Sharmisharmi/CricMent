@@ -32,10 +32,10 @@ class MatchDetails : AppCompatActivity() {
 
         // add fragment to the list
         adapter.addFragment(MatchInfoFragment(), "Info")
-        adapter.addFragment(MatchLiveFragment(), "Live")
-        adapter.addFragment(MatchCommentryFragment(), "Commentry")
-        adapter.addFragment(MatchScoreFragment(), "Score Card")
-        adapter.addFragment(MatchPointFragment(), "Points Rable")
+//        adapter.addFragment(MatchLiveFragment(), "Live")
+        adapter.addFragment(MatchScoreFragment(), "Squads")
+
+//        adapter.addFragment(MatchPointFragment(), "Points Table")
 
         // Adding the Adapter to the ViewPager
         pager.adapter = adapter

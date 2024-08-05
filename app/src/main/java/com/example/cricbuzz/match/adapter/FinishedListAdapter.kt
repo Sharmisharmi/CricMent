@@ -2,23 +2,29 @@ package com.example.cricbuzz.match.adapter
 
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.cricbuzz.CommonConstants.CommonConstants
 import com.example.cricbuzz.R
+import com.example.cricbuzz.home.model.CFData
 import com.example.cricbuzz.match.MatchDetails
 import com.example.cricbuzz.match.model.MatchesData
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
 
-class FinishedListAdapter(context: Context, data: ArrayList<MatchesData>) : RecyclerView.Adapter<FinishedListAdapter.ViewHolder>() {
+class FinishedListAdapter(context: Context, data: ArrayList<CFData>) : RecyclerView.Adapter<FinishedListAdapter.ViewHolder>() {
 
     private var context : Context
-    var data:ArrayList<MatchesData>
+    var data:ArrayList<CFData>
+    var editor: SharedPreferences.Editor? = null
+
 
 
     init {
@@ -33,43 +39,70 @@ class FinishedListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
 
     override fun onBindViewHolder(holder: FinishedListAdapter.ViewHolder, position: Int) {
 
+        editor = context.getSharedPreferences(CommonConstants.CRICKETBUZZ, AppCompatActivity.MODE_PRIVATE).edit()
 
 
-        holder.team1.text = data[position].teamInfo!![0].shortname.toString()
-        holder.team2.text = data[position].teamInfo!![1].shortname.toString()
+        if (data[position].teamInfo != null) {
+            holder.team1.text = data[position].teamInfo!![0].shortname ?: data[position].teamInfo!![0].name
+            if (data[position].teamInfo!!.size >1) {
+                holder.team2.text =
+                    data[position].teamInfo!![1].shortname ?: data[position].teamInfo!![1].name
+
+                if (!data[position].teamInfo!![1].img.toString().isNullOrEmpty()) {
+                    Picasso.get().load(data[position].teamInfo!![1].img.toString()).into(holder.team2mg)
+                }
+            }
+
+            if (data[position].score != null) {
+                if (data[position].score!!.size>0) {
+
+                    var team1Innings =
+                        data[position].score!![0].inning.toString().replace(" Inning 1", "")
+                    var team2Innings =
+                        data[position].score!![1].inning.toString().replace(" Inning 1", "")
+
+                    var condition1 =
+                        team1Innings.trim().equals(data[position].teamInfo!![0].name.toString())
+//                    var condition2 =
+//                        team1Innings.trim().equals(data[position].teamInfo!![1].name.toString())
+                    var condition3 =
+                        team2Innings.trim().equals(data[position].teamInfo!![0].name.toString())
+//                    var condition4 =
+//                        team2Innings.trim().equals(data[position].teamInfo!![1].name.toString())
+
+                    if (condition1) {
+                        holder.team1score.text =
+                            data[position].score!![0].r.toString() + " - " + data[position].score!![0].w.toString()
+                        holder.team1over.text = data[position].score!![0].o.toString()
+                        holder.team2score.text =
+                            data[position].score!![1].r.toString() + " - " + data[position].score!![1].w.toString()
+                        holder.team2over.text = data[position].score!![1].o.toString()
+
+                    } else if (condition3) {
+                        holder.team1score.text =
+                            data[position].score!![1].r.toString() + " - " + data[position].score!![1].w.toString()
+                        holder.team1over.text = data[position].score!![1].o.toString()
+                        holder.team2score.text =
+                            data[position].score!![0].r.toString() + " - " + data[position].score!![0].w.toString()
+                        holder.team2over.text = data[position].score!![0].o.toString()
+                    }
+                }
+            }
 
 
-        var team1Innings = data[position].score!![0].inning.toString().replace(" Inning 1","")
-        var team2Innings = data[position].score!![1].inning.toString().replace(" Inning 1","")
+            if (!data[position].teamInfo!![0].img.toString().isNullOrEmpty()) {
+                Picasso.get().load(data[position].teamInfo!![0].img.toString())
+                    .into(holder.team1Img)
+            }
 
-        var condition1 = team1Innings.trim().equals(data[position].teamInfo!![0].name.toString())
-        var condition2 = team1Innings.trim().equals(data[position].teamInfo!![1].name.toString())
-        var condition3 = team2Innings.trim().equals(data[position].teamInfo!![0].name.toString())
-        var condition4 = team2Innings.trim().equals(data[position].teamInfo!![1].name.toString())
 
-        if (condition1){
-            holder.team1score.text = data[position].score!![0].r.toString() +" - "+data[position].score!![0].w.toString()
-            holder.team1over.text = data[position].score!![0].o.toString()
-            holder.team2score.text = data[position].score!![1].r.toString() +" - "+data[position].score!![1].w.toString()
-            holder.team2over.text = data[position].score!![1].o.toString()
 
-        }else if (condition3){
-            holder.team1score.text = data[position].score!![1].r.toString() +" - "+data[position].score!![1].w.toString()
-            holder.team1over.text = data[position].score!![1].o.toString()
-            holder.team2score.text = data[position].score!![0].r.toString() +" - "+data[position].score!![0].w.toString()
-            holder.team2over.text = data[position].score!![0].o.toString()
+        }else{
+            holder.team1.text = data[position].teams!![0].toString()
+            holder.team2.text = data[position].teams!![1]
+
+
         }
-
-
-
-        if (!data[position].teamInfo!![0].img.toString().isNullOrEmpty()) {
-                Picasso.get().load(data[position].teamInfo!![0].img.toString()).into(holder.team1Img)
-            }
-
-
-            if (!data[position].teamInfo!![1].img.toString().isNullOrEmpty()) {
-                Picasso.get().load(data[position].teamInfo!![1].img.toString()).into(holder.team2mg)
-            }
 
 //                    if (data[position].status.toString().contains("won",ignoreCase = true)){
 //                holder.countryTxt.text = data.statusNote.toString().split(" by").toTypedArray()[0]
@@ -111,10 +144,26 @@ class FinishedListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
 //            }
 //
 //
-            if (data[position].status.toString().contains("won",ignoreCase = true)){
-                holder.countryTxt.text = data[position].status.toString().split(" by").toTypedArray()[0]
-                holder.byRunsTxt.text = data[position].status.toString().split("won ").toTypedArray()[1]
+
+
+//        try {
+            if (data[position].status.toString().contains("won", ignoreCase = true)) {
+                holder.countryTxt.text =
+                    data[position].status.toString().split(" by", ignoreCase = true).toTypedArray()[0]
+                holder.byRunsTxt.text =
+                    data[position].status.toString().split("won ", ignoreCase = true).toTypedArray()[1]
+            } else if (data[position].status.toString().contains("win", ignoreCase = true)) {
+                holder.countryTxt.text =
+                    data[position].status.toString().split(" by", ignoreCase = true).toTypedArray()[0]
+                holder.byRunsTxt.text =
+                    data[position].status.toString().split("win ", ignoreCase = true).toTypedArray()[1]
+            } else {
+                holder.countryTxt.visibility = View.GONE
+                holder.byRunsTxt.text = data[position].status.toString()
             }
+//        }catch (ex:Exception){
+//            ex.printStackTrace()
+//        }
 //
 //            if (!data[position].t1img.toString().isNullOrEmpty()) {
 //                Picasso.get().load(data[position].t1img).into(holder.team1Img)
@@ -132,8 +181,10 @@ class FinishedListAdapter(context: Context, data: ArrayList<MatchesData>) : Recy
 
 //
         holder.finishedCard.setOnClickListener {
-            context.startActivity(Intent(context, MatchDetails::class.java))
-        }
+            editor!!.putString(CommonConstants.ID, data[position].id.toString())
+            editor!!.commit()
+            editor!!.apply()
+            context.startActivity(Intent(context, MatchDetails::class.java))        }
 
 //        holder.news_desc.setSelected(true);
     }
